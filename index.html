@@ -6,14 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
 
 <body>
     <script>
-        var imageURL = 'https://firebasestorage.googleapis.com/v0/b/marvelherogenerator.appspot.com/o/img%2Ffullsizeoutput_a5f.jpeg?alt=media&token=e404376a-0a8b-4544-a131-e736320c149a';
+        var imageURL = prompt('Enter URL');
         $.ajax({
             url: "https://api-us.faceplusplus.com/facepp/v3/detect?api_key=lYJn2ec5zAnhgiO01Q5cMILRDs9laP4I&api_secret=9NCT_mXUokztZLOwk5hUqyLwB5aOLYI-&image_url=" + imageURL,
             type: "POST"
