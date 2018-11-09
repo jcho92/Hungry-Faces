@@ -7,33 +7,16 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
+
+
 
 </head>
 
 <body>
-    <script>
-        var imageURL = prompt('Enter URL');
-        $.ajax({
-            url: "https://api-us.faceplusplus.com/facepp/v3/detect?api_key=lYJn2ec5zAnhgiO01Q5cMILRDs9laP4I&api_secret=9NCT_mXUokztZLOwk5hUqyLwB5aOLYI-&image_url=" + imageURL,
-            type: "POST"
-        }).then(function (response) {
-            console.log(response.faces[0].face_token)
-            var face_token=response.faces[0].face_token;
-            console.log(face_token)
-            $.ajax({
-                url: "https://api-us.faceplusplus.com/facepp/v3/face/analyze?api_key=lYJn2ec5zAnhgiO01Q5cMILRDs9laP4I&api_secret=9NCT_mXUokztZLOwk5hUqyLwB5aOLYI-&face_tokens=" + face_token + "&return_attributes=gender,age,smiling,ethnicity",
-                type: "POST"
-            }).then(function(response){
-                console.log(response);
-                console.log(response.faces[0].attributes.age.value);
-                console.log(response.faces[0].attributes.gender.value);
-                console.log(response.faces[0].attributes.ethnicity.value);
-            })
+    
 
-
-        });
-
-    </script>
+    <script src="./app.js"></script>
 </body>
 
 </html>
