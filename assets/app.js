@@ -9,47 +9,36 @@ var config = {
 };
 firebase.initializeApp(config);
 // firebase auth 
-var auth = firebase.auth(); 
+var auth = firebase.auth();
 // firebase storage 
 // Create a root reference
 var storageRef = firebase.storage().ref();
-var imageFile; 
+var imageFile;
 var imageForUpload;
-window.onload = function () {
-      document.getElementById('userImage').addEventListener('change', function(e) {
-        var uploadFile = e.target.files[0];
-        storageRef.child('img/'+uploadFile.name).put(uploadFile).then(function(data) {
-            console.log(data.totalBytes);
-      })
-    });
+var imageforFPP;
+// upload function 
+function uploadHandler(e) {
+    var uploadFile = e.target.files[0];
+    storageRef.child('img/' + uploadFile.name).put(uploadFile).then(function (data) {
+        console.log(data.totalBytes);
+        data.ref.getDownloadURL().then(function (url) {
+            $.ajax({
+                url: 
+            })
+        }).then(function (result1) {
+            alert(result1);
+            return 'hello'
+        }).then(function (result2) {
+            alert(result2);
+            return 'hi'
+        }).then(function (result3) {
+            alert(result3);
+        })
+    })
 }
 
- 
+    window.onload = function () {
+            document.getElementById('userImage').addEventListener('change', uploadHandler)
+        }
 
     
-
-
-
-
-
-
-var imageURL = "https://raw.githubusercontent.com/jcho92/Hungry-Faces/master/WhatsApp%20Image%202018-11-04%20at%207.42.57%20PM.jpeg"
-$.ajax({
-    url: "https://api-us.faceplusplus.com/facepp/v3/detect?api_key=lYJn2ec5zAnhgiO01Q5cMILRDs9laP4I&api_secret=9NCT_mXUokztZLOwk5hUqyLwB5aOLYI-&image_url=" + imageURL,
-    type: "POST"
-}).then(function (response) {
-    console.log(response.faces[0].face_token)
-    var face_token = response.faces[0].face_token;
-    console.log(face_token)
-    $.ajax({
-        url: "https://api-us.faceplusplus.com/facepp/v3/face/analyze?api_key=lYJn2ec5zAnhgiO01Q5cMILRDs9laP4I&api_secret=9NCT_mXUokztZLOwk5hUqyLwB5aOLYI-&face_tokens=" + face_token + "&return_attributes=gender,age,smiling,ethnicity",
-        type: "POST"
-    }).then(function (response) {
-        console.log(response);
-        console.log(response.faces[0].attributes.age.value);
-        console.log(response.faces[0].attributes.gender.value);
-        console.log(response.faces[0].attributes.ethnicity.value);
-    })
-
-
-});
