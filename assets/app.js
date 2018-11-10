@@ -21,6 +21,17 @@ var storageRef = firebase.storage().ref();
 // invoked after a change to the file selection 
 // only selects the first file selected by the user 
 
+// ajax call to face ++ 
+function marvelGen (bin64Img) {
+    xhr = new XMLHttpRequest();
+    function reqListen () {
+        console.log(xhr.response);
+    }
+    xhr.addEventListener('load', reqListen);
+    xhr.open('POST', )
+    
+}
+
 function uploadHandler(evt) {
     var files = evt.target.files;
     var file = files[0];
@@ -32,9 +43,12 @@ function uploadHandler(evt) {
         reader.onload = function (readerEvt) {
             var binaryString = readerEvt.target.result;
             console.log(btoa(binaryString));
+            var bin64Img = btoa(binaryString);
+            marvelGen(bin64Img);
         };
         reader.readAsBinaryString(file);
         // call a function that initiates ajax call
+        
     }
     var uploadFile = evt.target.files[0];
     storageRef.child('img/' + uploadFile.name).put(uploadFile).then(
