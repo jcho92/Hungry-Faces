@@ -4,13 +4,33 @@ var config = {
     authDomain: "marvelherogenerator.firebaseapp.com",
     databaseURL: "https://marvelherogenerator.firebaseio.com",
     projectId: "marvelherogenerator",
-    storageBucket: "",
+    storageBucket: "gs://marvelherogenerator.appspot.com",
     messagingSenderId: "317800982498"
 };
 firebase.initializeApp(config);
-
+// firebase auth 
+var auth = firebase.auth(); 
 // firebase storage 
-const storage = firebase()
+// Create a root reference
+var storageRef = firebase.storage().ref();
+var imageFile; 
+var imageForUpload;
+window.onload = function () {
+      document.getElementById('userImage').addEventListener('change', function(e) {
+        var uploadFile = e.target.files[0];
+        storageRef.child('img/'+uploadFile.name).put(uploadFile).then(function(data) {
+            console.log(data.totalBytes);
+      })
+    });
+}
+
+ 
+
+    
+
+
+
+
 
 
 var imageURL = "https://raw.githubusercontent.com/jcho92/Hungry-Faces/master/WhatsApp%20Image%202018-11-04%20at%207.42.57%20PM.jpeg"
