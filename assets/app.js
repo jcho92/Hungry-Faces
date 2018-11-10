@@ -19,26 +19,32 @@ var imageforFPP;
 // upload function 
 function uploadHandler(e) {
     var uploadFile = e.target.files[0];
-    storageRef.child('img/' + uploadFile.name).put(uploadFile).then(function (data) {
-        console.log(data.totalBytes);
-        data.ref.getDownloadURL().then(function (url) {
-            $.ajax({
-                url: 
-            })
-        }).then(function (result1) {
-            alert(result1);
-            return 'hello'
-        }).then(function (result2) {
-            alert(result2);
-            return 'hi'
-        }).then(function (result3) {
-            alert(result3);
-        })
-    })
-}
+    storageRef.child('img/' + uploadFile.name).put(uploadFile).then(
+        storageRef.child('img/' + uploadFile.name).getDownloadURL().then(
+            function(url) {
+                console.log(url);
+        // `url` is the download URL for 'images/stars.jpg'
+      
+        // This can be downloaded directly:
+        var xhr = new XMLHttpRequest();
+        var myData; 
+        xhr.responseType = 'blob';
+        xhr.onload = function(event) {
+           var blob = xhr.response;
+           myData = xhr.response;  
+           console.log(blob); 
+        };
+        xhr.open('GET', url);
+        xhr.send();
+        console.log(myData);
+      }).then(function(t) {
+          console.log(t);
+      }))};
 
     window.onload = function () {
             document.getElementById('userImage').addEventListener('change', uploadHandler)
         }
+
+        
 
     
