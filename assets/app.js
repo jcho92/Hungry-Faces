@@ -22,21 +22,7 @@ function uploadHandler(e) {
     storageRef.child('img/' + uploadFile.name).put(uploadFile).then(
         storageRef.child('img/' + uploadFile.name).getDownloadURL().then(
             function(url) {
-                console.log(url);
-        // `url` is the download URL for 'images/stars.jpg'
-      
-        // This can be downloaded directly:
-        var xhr = new XMLHttpRequest();
-        var myData; 
-        xhr.responseType = 'blob';
-        xhr.onload = function(event) {
-           var blob = xhr.response;
-           myData = xhr.response;  
-           console.log(blob); 
-        };
-        xhr.open('GET', url);
-        xhr.send();
-        console.log(myData);
+                console.log(url);      
       }).then(function(t) {
           console.log(t);
       }))};
