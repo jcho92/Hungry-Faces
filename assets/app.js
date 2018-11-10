@@ -22,32 +22,32 @@ var storageRef = firebase.storage().ref();
 // only selects the first file selected by the user 
 
 // ajax call to face ++ 
-function marvelGen (bin64Img) {
-    xhr = new XMLHttpRequest();
-    function reqListen () {
-        console.log(xhr.response);
-    }
-    xhr.addEventListener('load', reqListen);
-    xhr.open('POST', )
+function marvelGen (imgData) {
+    var url =  "https://api-us.faceplusplus.com/facepp/v3/detect?api_key=lYJn2ec5zAnhgiO01Q5cMILRDs9laP4I&api_secret=9NCT_mXUokztZLOwk5hUqyLwB5aOLYI-";
+    $.ajax({
+        method: 'POST',
+        type: 'POST',
+        data: imgData,
+        contentType: false, 
+        url: url,
+        processData: false 
+    }).then(function(response) {
+        console.log(response);
+    })
     
 }
 
 function uploadHandler(evt) {
     var files = evt.target.files;
     var file = files[0];
+    var data = new FormData(); 
 
     // if files exist then load a filereader object, convert to binary string and store result 
     if (files && file) {
-        var reader = new FileReader();
-        // nested function that reads and converts file after the filereader is done loading (onload)
-        reader.onload = function (readerEvt) {
-            var binaryString = readerEvt.target.result;
-            console.log(btoa(binaryString));
-            var bin64Img = btoa(binaryString);
-            marvelGen(bin64Img);
-        };
-        reader.readAsBinaryString(file);
-        // call a function that initiates ajax call
+        // append the files to the form data
+        data.append('image_file', file, file.name);
+        console.log(data);
+
         
     }
     var uploadFile = evt.target.files[0];
@@ -58,6 +58,8 @@ function uploadHandler(evt) {
             }
         )
     )
+    // call ajax func 
+    marvelGen(data);
 }
 
 
