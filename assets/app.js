@@ -23,16 +23,34 @@ var storageRef = firebase.storage().ref();
 
 // ajax call to face ++ 
 function marvelGen (imgData) {
-    var url =  "https://api-us.faceplusplus.com/facepp/v3/detect?api_key=lYJn2ec5zAnhgiO01Q5cMILRDs9laP4I&api_secret=9NCT_mXUokztZLOwk5hUqyLwB5aOLYI-";
+    var detectUrl =  "https://api-us.faceplusplus.com/facepp/v3/detect?api_key=lYJn2ec5zAnhgiO01Q5cMILRDs9laP4I&api_secret=9NCT_mXUokztZLOwk5hUqyLwB5aOLYI-";
     $.ajax({
         method: 'POST',
         type: 'POST',
         data: imgData,
         contentType: false, 
-        url: url,
+        url: detectUrl,
         processData: false 
     }).then(function(response) {
         console.log(response);
+        var tokenToUse = response.faces[1].face_token; 
+        console.log(tokenToUse);
+        return tokenToUse;
+    }).then(function(token) {
+        var api_secret = '9NCT_mXUokztZLOwk5hUqyLwB5aOLYI-';
+        var api_key = 'lYJn2ec5zAnhgiO01Q5cMILRDs9laP4I';
+        var attr_return = 'gender,age,beauty';
+        var analyzeUrl = 'https://api-us.faceplusplus.com/facepp/v3/face/analyze?&api_key='+api_key+"&api_secret="+api_secret+'&face_tokens='+token+'&return_attributes='+attr_return;
+        $.ajax({
+            method: 'POST',
+            type: 'POST',
+            url: analyzeUrl
+            
+        }).then(function (response) {
+            console.log(response);
+        }).catch(function (err) {
+            console.log(err);
+        })
     })
     
 }
