@@ -33,6 +33,15 @@ function marvelGen (imgData) {
         processData: false 
     }).then(function(response) {
         console.log(response);
+        var tokenToUse = response.faces[0].face_token; 
+        console.log(tokenToUse);
+        return tokenToUse;
+    }).then(function() {
+        $.ajax({
+            method: 'POST',
+            type: 'POST',
+            
+        })
     })
     
 }
