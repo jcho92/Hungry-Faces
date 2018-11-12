@@ -39,7 +39,7 @@ function marvelGen (imgData) {
         processData: false 
     }).then(function(response) {
         console.log(response);
-        var tokenToUse = response.faces[1].face_token; 
+        var tokenToUse = response.faces[0].face_token; 
         console.log(tokenToUse);
         return tokenToUse;
     }).then(function(tokenToUse) {
@@ -70,14 +70,13 @@ function uploadHandler(evt) {
     }
     var uploadFile = evt.target.files[0];
     console.log(uploadFile.name);
-    var uploadTask = storageRef.child('img/')
-    storageRef.child('img/' + uploadFile.name).put(uploadFile).then(
-        storageRef.child('img/' + uploadFile.name).getDownloadURL().then(
-            function (url) {
-                console.log(url);
-            }
-        )
-    )
+    var uploadTask = storageRef.child('img/'+uploadFile.name).put(uploadFile);
+    uploadTask.on('state_changed', null, null, function () {
+        console.log('Image uploaded successfully');
+        // might want to add error checks or an alert to user 
+        
+    });
+
     // call ajax func 
     marvelGen(data);
 }
