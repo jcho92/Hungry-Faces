@@ -11,7 +11,7 @@ var config = {
 // face plus plus API config variables 
 var api_secretFpp = '9NCT_mXUokztZLOwk5hUqyLwB5aOLYI-';
 var api_keyFpp = 'lYJn2ec5zAnhgiO01Q5cMILRDs9laP4I';
-var attr_returnFpp = 'gender,age,beauty';
+var attr_returnFpp = 'gender,age,smiling,ethnicity,beauty';
 
 // initialize firebase app
 firebase.initializeApp(config);
@@ -49,8 +49,15 @@ function marvelGen (imgData) {
             type: 'POST',
             url: analyzeUrl
         }).then(function (response) {
-            console.log(response);
-            // TODO: response variables will need to be fed into a function for Marvel API 
+        console.log(response);
+        console.log(response.faces[0].attributes.age.value);
+        console.log(response.faces[0].attributes.gender.value);
+        console.log(response.faces[0].attributes.ethnicity.value);
+        console.log(response.faces[0].attributes.beauty.female_score);
+        console.log(response.faces[0].attributes.beauty.male_score);
+        var charID = (Math.floor(response.faces[0].attributes.beauty.male_score + response.faces[0].attributes.beauty.female_score) / 2) * 10 + response.faces[0].attributes.age.value;
+        console.log(charID)
+        localStorage.setItem("CharID", charID);
         }).catch(function (err) {
             console.log(err);
         })
