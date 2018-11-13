@@ -1,29 +1,72 @@
-<!doctype <!DOCTYPE html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="./assets/style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script> -->
-
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <link rel="styesheet" link="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/CSS/style.css">
 </head>
 
 <body>
-    <form>
-        <input type="file" name="image_file" id="filePicker">
-        <button id="upload" type="submit">Upload!</button>
-    </form>
-    
+    <div class="container">
+        <div class="row">
+            <div class="col">   
+            <div class="welcomepage">  
+                <h1>Welcome to Marvel Universe</h1>
+                <hr>
+                <div class="child-div">
+                    <img class="marveluniverse" src="assets/images/marvel characters.jpg" width="800"/>
+                </div>
+                <br><br>
+                <center>
+                   <button id="getstarted" type="button" class="btn btn-primary btn-lg buttons">Get Started</button>
+                </center>
+                <br><br>
+            </div> 
+            </div>  
+        </div> 
+        <br><br>
+        <div class="mainpage" id="mainpage">
+            <form>
+                <div class="row">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Your name or nickname">
+                        <button type="button" class="save buttons">Save</button>
+                        <br><br>
+                        <button type="button" class="uploadpicture buttons">Upload Picture</button>
+                    </div>
+                    <br>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Your name or nickname">
+                        <button type="button" class="save">Save</button>
+                        <br>
+                        <button type="button" class="uploadpicture">Upload Picture</button>
+                    </div>
+                </div>
+            </form> 
+            <br><br>
+        
+            <center>
+                <button type="button" class="btn btn-outline-getresults">Get Results</button>
+                <br><br>
+            </center>
+        </div>
 
-    <!-- <script src="./assets/app.js"></script> -->
-    <script src="./assets/faceplusplus.js"></script>
-    <!-- <script src="./assets/marvel.js"></script> -->
+        <div class="results" id="results">
+            <div class="playeronescore">
+                
+            </div>
+            <div class="playertwoscore">
+
+            </div>
+        
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src ="assets/javascript/app.js"></script>
 </body>
-
 </html>
