@@ -1,0 +1,41 @@
+<!doctype <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <script>
+        // script for face++
+        var imageURL = "https://firebasestorage.googleapis.com/v0/b/marvelherogenerator.appspot.com/o/img%2FWhatsApp%20Image%202018-09-05%20at%203.12.00%20PM.jpeg"
+        $.ajax({
+            url: "https://api-us.faceplusplus.com/facepp/v3/detect?api_key=lYJn2ec5zAnhgiO01Q5cMILRDs9laP4I&api_secret=9NCT_mXUokztZLOwk5hUqyLwB5aOLYI-&image_url=" + imageURL,
+            type: "POST"
+        }).then(function (response) {
+            console.log(response.faces)
+            var face_token=response.faces[0].face_token;
+            console.log(face_token)
+            $.ajax({
+                url: "https://api-us.faceplusplus.com/facepp/v3/face/analyze?api_key=lYJn2ec5zAnhgiO01Q5cMILRDs9laP4I&api_secret=9NCT_mXUokztZLOwk5hUqyLwB5aOLYI-&face_tokens=" + face_token + "&return_attributes=gender,age,smiling,ethnicity",
+                type: "POST"
+            }).then(function(response){
+                console.log(response);
+                console.log(response.faces[0].attributes.age.value);
+                console.log(response.faces[0].attributes.gender.value);
+                console.log(response.faces[0].attributes.ethnicity.value);
+            })
+
+
+        });
+
+    </script>
+</body>
+
+</html>
