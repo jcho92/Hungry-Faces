@@ -41,6 +41,9 @@ var displayResults = function (personImgUrl, marvelImgUrl) {
     personImgTag.classList = "resize";
     marvelImgDiv.append(marvelImgTag);
     personImgDiv.append(personImgTag);
+    // hide the main image 
+    document.getElementById('mainSplashImg').classList = "marveluniverse d-none";
+    
 
 }
 
@@ -99,11 +102,12 @@ function marvelGen(imgData) {
             // marvelNameDiv.attr("class" , "name")
             // $("#marvelImg").append(marvelName)
             displayResults(userImgUrl,marvelImage);
-            
-            })
+            }, 
+            alert('My Spidey-Sense says Marvel is having problems...'));
         }).catch(function (err) {
             // this is where we take the response from the marvel call, get the image and place
             console.log(err);
+            alert('there was a problem');
             
             // in a div 
             // we can also display our image of the user now from what we stored earlier 
