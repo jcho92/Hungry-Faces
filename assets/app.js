@@ -12,6 +12,7 @@ var config = {
 var api_secretFpp = '9NCT_mXUokztZLOwk5hUqyLwB5aOLYI-';
 var api_keyFpp = 'lYJn2ec5zAnhgiO01Q5cMILRDs9laP4I';
 var attr_returnFpp = 'gender,age,smiling,ethnicity,beauty';
+var userImgUrl; 
 
 // initialize firebase app
 firebase.initializeApp(config);
@@ -26,6 +27,20 @@ var storageRef = firebase.storage().ref();
 // event handler function 
 // invoked after a change to the file selection 
 // only selects the first file selected by the user 
+
+// display results function 
+var displayResults = function (personImgUrl, marvelImgUrl) {
+    console.log('calling display results');
+    var marvelImgDiv = document.getElementById('marvelDiv');
+    var marvelImgTag = document.createElement('img');
+    var personImgDiv = document.getElementById('personDiv');
+    var personImgTag = document.createElement('img');
+    marvelImgTag.src = marvelImgUrl;
+    personImgTag.src = personImgUrl;
+    marvelImgDiv.append(marvelImgTag);
+    personImgDiv.append(personImgTag);
+
+}
 
 // ajax call to face ++ 
 function marvelGen(imgData) {
@@ -76,17 +91,13 @@ function marvelGen(imgData) {
             
             var urlPath = response.data.results[0].thumbnail.path;
             var urlExtension = response.data.results[0].thumbnail.extension;
-            var marvelImage = urlPath+"."+ urlExtension;
-            var marvelImgDiv = document.getElementById('marvelImg');
-            var marvelImgTag = document.createElement('img');
-            marvelImgTag.src = marvelImage;
-            marvelImgDiv.append(marvelImgTag);
-            console.log(marvelImage);
+            var marvelImage = urlPath + "." + urlExtension;
             var marvelName = response.data.results[0].name;
             var marvelNameDiv = ("<p>");
             marvelNameDiv.attr("class" , "name")
             $("#marvelImg").append(marvelName)
-
+            displayResults(userImgUrl,marvelImage);
+            
             })
         }).catch(function (err) {
             // this is where we take the response from the marvel call, get the image and place
@@ -112,8 +123,13 @@ function uploadHandler(evt) {
     var uploadFile = evt.target.files[0];
     console.log(uploadFile.name);
     var uploadTask = storageRef.child('img/' + uploadFile.name).put(uploadFile);
-    uploadTask.on('state_changed', null, null, function () {
+    uploadTask.on('state_changed', null, null, function (snapshot) {
         console.log('Image uploaded successfully');
+        uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+            console.log('File available at', downloadURL);
+            userImgUrl = downloadURL; 
+            
+        })
         // we should get and store the firebase storage URL 
         // for the USER's image and store in a global VAR or something (or local storage)
 
