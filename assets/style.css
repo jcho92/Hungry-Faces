@@ -62,6 +62,11 @@ img {
     border: 2px solid yellow;
     border-radius: 5px;
     display: block; 
+    
+}
+
+.marveluniverse {
+    width: 100%; 
 }
 
  /*input[type='file']{
@@ -141,6 +146,6 @@ input[type=text]:focus{
 }
 
 img.resize {
-    width: 400px;
-    height: auto;
+    width: auto;
+    height: 400px;
 }

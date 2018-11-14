@@ -19,7 +19,7 @@
             <div class="col justify-content-center">
                 <h1>Marvel Hero Generator</h1>
                 <hr>
-                <img id="mainSplashImg" class="marveluniverse" src="assets/images/marvel characters.jpg" width="800" />
+                <img id="mainSplashImg" class="marveluniverse" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="./assets/images/marvel_characters.jpg">
             </div>
         </div>
         <div class="row mb-4">
@@ -40,9 +40,17 @@
             $("#filePicker").click();
         });
     </script>
-    <!-- <script src="./assets/app.js"></script> -->
     <script src="./assets/app.js"></script>
-    <!-- <script src="./assets/marvel.js"></script> -->
+    <script>
+        window.addEventListener('load', function(){
+    var allimages= document.getElementsByTagName('img');
+    for (var i=0; i<allimages.length; i++) {
+        if (allimages[i].getAttribute('data-src')) {
+            allimages[i].setAttribute('src', allimages[i].getAttribute('data-src'));
+        }
+    }
+}, false)
+    </script>
 </body>
 
 </html>
