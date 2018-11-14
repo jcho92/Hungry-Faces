@@ -138,3 +138,8 @@ input[type=text]:focus{
     border-color:dodgerblue;
     box-shadow:0 0 8px 0 dodgerblue;
 }
+
+img.resize {
+    width: 400px;
+    height: auto;
+}
