@@ -9,9 +9,6 @@
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
-
-
-
 </head>
 
 <body>
@@ -23,15 +20,15 @@
                     <center>
                         <img class="marveluniverse" src="assets/images/marvel characters.jpg" width="800" />
                     </center>
-                    <br>
+                    <br><br><br>
             </div>
         </div>
          <div class="row">
                 <div class="col">
                         <form>
-                            <center>
-                                <label class="pickypurImg" for="filePicker">Pick your image</label>
+                            <center> 
                                 <input type="file" id="filePicker" name="image_file">
+                                <span class="file1">Pick your image</span>
                             </center>
                         </form>
                     </div>
@@ -42,7 +39,11 @@
                 </div>
         </div>
         
-
+        <script>
+                $(".file1").bind("click" , function(){
+                    $("#filePicker").click();
+                });
+        </script>
     <!-- <script src="./assets/app.js"></script> -->
     <script src="./assets/app.js"></script>
     <!-- <script src="./assets/marvel.js"></script> -->
