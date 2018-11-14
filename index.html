@@ -1,5 +1,5 @@
-<!doctype <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
@@ -15,11 +15,33 @@
 </head>
 
 <body>
-    <form>
-        <input type="file" name="image_file" id="filePicker">
-        <button id="upload" type="submit">Upload!</button>
-    </form>
-    
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                    <h1>Welcome to Marvel Universe</h1>
+                    <hr>
+                    <center>
+                        <img class="marveluniverse" src="assets/images/marvel characters.jpg" width="800" />
+                    </center>
+                    <br>
+            </div>
+        </div>
+         <div class="row">
+                <div class="col">
+                        <form>
+                            <center>
+                                <label class="pickypurImg" for="filePicker">Pick your image</label>
+                                <input type="file" id="filePicker" name="image_file">
+                            </center>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="personImg" class="col">Person's image here</div>
+                    <div id="marvelImg" class="col">Marvel image here</div>
+                </div>
+        </div>
+        
 
     <!-- <script src="./assets/app.js"></script> -->
     <script src="./assets/app.js"></script>
