@@ -95,10 +95,10 @@ input[type='file']:hover{
     text-align: center;
 }
 
-.container {
+/* .container {
     width: 1200px;
     margin: 0 auto;
-}
+} */
 
 .photo-div {
     width: 200px;
