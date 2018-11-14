@@ -45,9 +45,9 @@ var displayResults = function (personImgUrl, marvelImgUrl) {
     var personImgDiv = document.getElementById('personDiv');
     var personImgTag = document.createElement('img');
     marvelImgTag.src = marvelImgUrl;
-    marvelImgTag.classList = "resize d-none";
+    marvelImgTag.classList = "resize";
     personImgTag.src = personImgUrl;
-    personImgTag.classList = "resize d-none";
+    personImgTag.classList = "resize";
     marvelImgDiv.append(marvelImgTag);
     personImgDiv.append(personImgTag);
     // hide the main image 
