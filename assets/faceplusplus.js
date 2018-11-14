@@ -4,13 +4,11 @@ var apikey = "96b65e16cae4310e026174023b8d08b1";
 var secretkey = "3656ff9c1551c01685aedbcebd11e8fada794c33";
 
 
-var imageURL = "https://raw.githubusercontent.com/jcho92/Hungry-Faces/master/WhatsApp%20Image%202018-09-03%20at%207.16.51%20PM.jpeg"
+var imageURL = "https://raw.githubusercontent.com/jcho92/Hungry-Faces/master/Screen%20Shot%202018-11-08%20at%206.56.59%20PM.png"
 $.ajax({
     url: "https://api-us.faceplusplus.com/facepp/v3/detect?api_key=lYJn2ec5zAnhgiO01Q5cMILRDs9laP4I&api_secret=9NCT_mXUokztZLOwk5hUqyLwB5aOLYI-&image_url=" + imageURL,
     type: "POST"
 }).then(function (response) {
-    var charID = "";
-    var queryURL = "https://gateway.marvel.com:443/v1/public/characters/1009" + charID + "?apikey=" + apikey + "&ts=" + timestamp;
     console.log(response.faces)
     var face_token = response.faces[0].face_token;
     console.log(face_token)
@@ -41,6 +39,12 @@ $.ajax({
             console.log(response)
             console.log(response.data.results[0].name)
             console.log(response.data.results[0].thumbnail.path)
+            console.log(response.data.results[0].thumbnail.extension)
+            
+            var urlPath = response.data.results[0].thumbnail.path
+            var urlExtension = response.data.results[0].thumbnail.extension
+            var marvelImage = urlPath+"."+ urlExtension;
+            console.log(marvelImage)
 
         })
      })
@@ -48,4 +52,5 @@ $.ajax({
 
 
 })
+
 
