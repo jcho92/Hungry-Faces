@@ -83,9 +83,11 @@ function marvelGen(imgData) {
             marvelImgDiv.append(marvelImgTag);
             console.log(marvelImage);
             var marvelName = response.data.results[0].name;
-            var marvelNameDiv = ("<p>");
-            marvelNameDiv.attr("class" , "name")
-            $("#marvelImg").append(marvelName)
+            var marvelNameDiv = document.getElementById('marvelImg');
+            var marvelNameTag = document.createElement('p');
+            marvelNameTag.innerText = marvelName;
+           
+            marvelNameDiv.append(marvelNameTag);
 
             })
         }).catch(function (err) {
