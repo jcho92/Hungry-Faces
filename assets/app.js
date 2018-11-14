@@ -45,7 +45,8 @@ var displayResults = function (personImgUrl, marvelImgUrl) {
     personImgDiv.append(personImgTag);
     // hide the main image 
     document.getElementById('mainSplashImg').classList = "marveluniverse d-none";
-    marvelImgTag.onload
+    // kill the loader
+
 }
 
 // ajax call to face ++ 
@@ -67,6 +68,7 @@ function marvelGen(imgData) {
     }, 
     function (err) {
         console.log('There was an error: ' +err);
+        // kill the loader, refresh page 
     }).then(function (tokenToUse) {
         var analyzeUrl = 'https://api-us.faceplusplus.com/facepp/v3/face/analyze?&api_key=' + api_keyFpp + "&api_secret=" + api_secretFpp + '&face_tokens=' + tokenToUse + '&return_attributes=' + attr_returnFpp;
         $.ajax({
@@ -85,6 +87,7 @@ function marvelGen(imgData) {
         },
         function (err) {
             console.log('There was an error: ' + err);
+            // kill the loader, refresh page 
         }).then(function () {
             // this is where the marvel API call goes 
             var apikeyMarvel = '96b65e16cae4310e026174023b8d08b1';
@@ -111,6 +114,7 @@ function marvelGen(imgData) {
             },function (err) {
                 console.log('There was an error:');
                 console.log(err.responseJSON);
+                // kill the loader refresh the page 
             })
             })}
 
@@ -120,6 +124,7 @@ function uploadHandler(evt) {
             var files = evt.target.files;
             var file = files[0];
             var data = new FormData();
+            // maybe add a loader 
 
             // if files exist then load a filereader object, convert to binary string and store result 
             if (files && file) {
