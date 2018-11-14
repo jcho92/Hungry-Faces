@@ -1,31 +1,50 @@
-<!doctype <!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Marvel Hero Generator</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/style.css" />
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
 
-<body>
 
 
 </head>
 
 <body>
-    <form>
-        <input type="file" name="file" id="userImage">
-        <button id="upload" type="submit">Upload!</button>
-    </form>
-    
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                    <h1>Welcome to Marvel Universe</h1>
+                    <hr>
+                    <center>
+                        <img class="marveluniverse" src="assets/images/marvel characters.jpg" width="800" />
+                    </center>
+                    <br>
+            </div>
+        </div>
+         <div class="row">
+                <div class="col">
+                        <form>
+                            <center>
+                                <label class="pickypurImg" for="filePicker">Pick your image</label>
+                                <input type="file" id="filePicker" name="image_file">
+                            </center>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="personImg" class="col">Person's image here</div>
+                    <div id="marvelImg" class="col">Marvel image here</div>
+                </div>
+        </div>
+        
 
     <!-- <script src="./assets/app.js"></script> -->
-    <script src="./assets/faceplusplus.js"></script>
+    <script src="./assets/app.js"></script>
     <!-- <script src="./assets/marvel.js"></script> -->
 </body>
 
