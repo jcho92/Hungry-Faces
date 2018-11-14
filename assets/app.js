@@ -12,7 +12,7 @@ var config = {
 var api_secretFpp = '9NCT_mXUokztZLOwk5hUqyLwB5aOLYI-';
 var api_keyFpp = 'lYJn2ec5zAnhgiO01Q5cMILRDs9laP4I';
 var attr_returnFpp = 'gender,age,smiling,ethnicity,beauty';
-var userIm; 
+var userIm;
 
 // initialize firebase app
 firebase.initializeApp(config);
@@ -36,21 +36,19 @@ var displayResults = function (personImgUrl, marvelImgUrl) {
     var personImgDiv = document.getElementById('personDiv');
     var personImgTag = document.createElement('img');
     marvelImgTag.src = marvelImgUrl;
-    marvelImgTag.classList = "resize"; 
+    marvelImgTag.classList = "resize";
     personImgTag.src = personImgUrl;
     personImgTag.classList = "resize";
     marvelImgDiv.append(marvelImgTag);
     personImgDiv.append(personImgTag);
     // hide the main image 
     document.getElementById('mainSplashImg').classList = "marveluniverse d-none";
-    
-
 }
 
 // ajax call to face ++ 
 function marvelGen(imgData) {
     var detectUrl = "https://api-us.faceplusplus.com/facepp/v3/detect?api_key=" + api_keyFpp + "&api_secret=" + api_secretFpp;
-    $.ajax({
+    $.ajax({ // call 
         method: 'POST',
         type: 'POST',
         data: imgData,
@@ -59,14 +57,13 @@ function marvelGen(imgData) {
         processData: false
     }).then(function (response) {
         console.log(response);
-        console.log('no face if below is 0');
-        console.log(response.faces.length);
+        console.log('The number of faces detected was: ' + response.faces.length);
         var tokenToUse = response.faces[0].face_token;
         console.log(tokenToUse);
         return tokenToUse;
-    },function(err){
-        console.log(err);
-        alert('There was an error!: '+err);
+    }, 
+    function (err) {
+        console.log('There was an error: ' +err);
     }).then(function (tokenToUse) {
         var analyzeUrl = 'https://api-us.faceplusplus.com/facepp/v3/face/analyze?&api_key=' + api_keyFpp + "&api_secret=" + api_secretFpp + '&face_tokens=' + tokenToUse + '&return_attributes=' + attr_returnFpp;
         $.ajax({
@@ -82,11 +79,13 @@ function marvelGen(imgData) {
             var charID = (Math.floor(response.faces[0].attributes.beauty.male_score + response.faces[0].attributes.beauty.female_score) / 2) * 10 + response.faces[0].attributes.age.value;
             console.log(charID)
             localStorage.setItem("CharID", charID);
-        }, 
-        alert('No Face Detected')).then(function () {
+        },
+        function (err) {
+            console.log('There was an error: ' + err);
+        }).then(function () {
             // this is where the marvel API call goes 
-            var apikeyMarvel = '96b65e16cae4310e026174023b8d08b1'; 
-            var timestamp = new Date().getTime(); 
+            var apikeyMarvel = '96b65e16cae4310e026174023b8d08b1';
+            var timestamp = new Date().getTime();
             var marvelID = localStorage.getItem("CharID");
             var queryURL = "https://gateway.marvel.com:443/v1/public/characters/1009" + marvelID + "?apikey=" + apikeyMarvel + "&ts=" + timestamp;
             console.log(timestamp)
@@ -95,67 +94,60 @@ function marvelGen(imgData) {
                 url: queryURL,
                 method: "GET",
             }).then(function (response) {
-            console.log(response);
-            console.log(response.data.results[0].thumbnail.path);
-            console.log(response.data.results[0].thumbnail.extension);
-            
-            var urlPath = response.data.results[0].thumbnail.path;
-            var urlExtension = response.data.results[0].thumbnail.extension;
-            var marvelImage = urlPath + "." + urlExtension;
-            // var marvelName = response.data.results[0].name;
-            // var marvelNameDiv = ("<p>");
-            // marvelNameDiv.attr("class" , "name")
-            // $("#marvelImg").append(marvelName)
-            displayResults(userImgUrl,marvelImage);
-            }, 
-            alert('My Spidey-Sense says Marvel is having problems...'));
-        }).catch(function (err) {
-            // this is where we take the response from the marvel call, get the image and place
-            console.log(err);
-            alert('there was a problem');
-            
-            // in a div 
-            // we can also display our image of the user now from what we stored earlier 
+                console.log(response);
+                console.log(response.data.results[0].thumbnail.path);
+                console.log(response.data.results[0].thumbnail.extension);
+                var urlPath = response.data.results[0].thumbnail.path;
+                var urlExtension = response.data.results[0].thumbnail.extension;
+                var marvelImage = urlPath + "." + urlExtension;
+                // var marvelName = response.data.results[0].name;
+                // var marvelNameDiv = ("<p>");
+                // marvelNameDiv.attr("class" , "name")
+                // $("#marvelImg").append(marvelName)
+                displayResults(userImgUrl, marvelImage);
+            },function (err) {
+                console.log('There was an error:');
+                console.log(err.responseJSON);
             })
-    })
+            })}
 
-}
+        )}
 
 function uploadHandler(evt) {
-    var files = evt.target.files;
-    var file = files[0];
-    var data = new FormData();
+            var files = evt.target.files;
+            var file = files[0];
+            var data = new FormData();
 
-    // if files exist then load a filereader object, convert to binary string and store result 
-    if (files && file) {
-        // append the files to the form data
-        data.append('image_file', file, file.name);
-    }
-    var uploadFile = evt.target.files[0];
-    console.log(uploadFile.name);
-    var uploadTask = storageRef.child('img/' + uploadFile.name).put(uploadFile);
-    uploadTask.on('state_changed', null, null, function (snapshot) {
-        console.log('Image uploaded successfully');
-        uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
-            console.log('File available at', downloadURL);
-            userImgUrl = downloadURL; 
-            
-        })
-        // we should get and store the firebase storage URL 
-        // for the USER's image and store in a global VAR or something (or local storage)
+            // if files exist then load a filereader object, convert to binary string and store result 
+            if (files && file) {
+                // append the files to the form data
+                data.append('image_file', file, file.name);
+            }
+            var uploadFile = evt.target.files[0];
+            console.log(uploadFile.name);
+            var uploadTask = storageRef.child('img/' + uploadFile.name).put(uploadFile);
+            uploadTask.on('state_changed', null, null, function (snapshot) {
+                console.log('Image uploaded successfully');
+                uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                    console.log('File available at', downloadURL);
+                    userImgUrl = downloadURL;
 
-    });
+                })
+                // we should get and store the firebase storage URL 
+                // for the USER's image and store in a global VAR or something (or local storage)
 
-    // call ajax func 
-    marvelGen(data);
-}
+            });
+
+            // call ajax func 
+            marvelGen(data);
+        }
 
 
 if (window.File && window.FileReader && window.FileList && window.Blob) {
-    document.getElementById('filePicker').addEventListener('change', uploadHandler, false);
-} else {
-    alert('The File APIs are not fully supported in this browser.');
-}
+        document.getElementById('filePicker').addEventListener('change', uploadHandler, false);
+    } else {
+        alert('The File APIs are not fully supported in this browser.');
+    }
 
 
 
