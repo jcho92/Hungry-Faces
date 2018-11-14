@@ -92,6 +92,10 @@ function marvelGen(imgData) {
             var urlPath = response.data.results[0].thumbnail.path;
             var urlExtension = response.data.results[0].thumbnail.extension;
             var marvelImage = urlPath + "." + urlExtension;
+            var marvelName = response.data.results[0].name;
+            var marvelNameDiv = ("<p>");
+            marvelNameDiv.attr("class" , "name")
+            $("#marvelImg").append(marvelName)
             displayResults(userImgUrl,marvelImage);
             
             })
