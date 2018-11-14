@@ -38,7 +38,7 @@ var displayResults = function (personImgUrl, marvelImgUrl) {
     marvelImgTag.src = marvelImgUrl;
     marvelImgTag.classList = "resize"; 
     personImgTag.src = personImgUrl;
-    personImgTag.src = "resize";
+    personImgTag.classList = "resize";
     marvelImgDiv.append(marvelImgTag);
     personImgDiv.append(personImgTag);
 
