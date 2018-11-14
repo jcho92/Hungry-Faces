@@ -28,47 +28,69 @@ var storageRef = firebase.storage().ref();
 // only selects the first file selected by the user 
 
 // ajax call to face ++ 
-function marvelGen (imgData) {
-    var detectUrl =  "https://api-us.faceplusplus.com/facepp/v3/detect?api_key="+api_keyFpp+"&api_secret="+api_secretFpp;
+function marvelGen(imgData) {
+    var detectUrl = "https://api-us.faceplusplus.com/facepp/v3/detect?api_key=" + api_keyFpp + "&api_secret=" + api_secretFpp;
     $.ajax({
         method: 'POST',
         type: 'POST',
         data: imgData,
-        contentType: false, 
+        contentType: false,
         url: detectUrl,
-        processData: false 
-    }).then(function(response) {
+        processData: false
+    }).then(function (response) {
         console.log(response);
-        var tokenToUse = response.faces[0].face_token; 
+        var tokenToUse = response.faces[0].face_token;
         console.log(tokenToUse);
         return tokenToUse;
-    }).then(function(tokenToUse) {
-        var analyzeUrl = 'https://api-us.faceplusplus.com/facepp/v3/face/analyze?&api_key='+api_keyFpp+"&api_secret="+api_secretFpp+'&face_tokens='+tokenToUse+'&return_attributes='+attr_returnFpp;
+    }).then(function (tokenToUse) {
+        var analyzeUrl = 'https://api-us.faceplusplus.com/facepp/v3/face/analyze?&api_key=' + api_keyFpp + "&api_secret=" + api_secretFpp + '&face_tokens=' + tokenToUse + '&return_attributes=' + attr_returnFpp;
         $.ajax({
             method: 'POST',
             type: 'POST',
             url: analyzeUrl
         }).then(function (response) {
-        console.log(response);
-        console.log(response.faces[0].attributes.age.value);
-        console.log(response.faces[0].attributes.gender.value);
-        console.log(response.faces[0].attributes.ethnicity.value);
-        console.log(response.faces[0].attributes.beauty.female_score);
-        console.log(response.faces[0].attributes.beauty.male_score);
-        var charID = (Math.floor(response.faces[0].attributes.beauty.male_score + response.faces[0].attributes.beauty.female_score) / 2) * 10 + response.faces[0].attributes.age.value;
-        console.log(charID)
-        localStorage.setItem("CharID", charID);
-        }).catch(function (err) {
-            console.log(err);
-        })
+            console.log(response);
+            console.log(response.faces[0].attributes.age.value);
+            console.log(response.faces[0].attributes.gender.value);
+            console.log(response.faces[0].attributes.ethnicity.value);
+            console.log(response.faces[0].attributes.beauty.female_score);
+            console.log(response.faces[0].attributes.beauty.male_score);
+            var charID = (Math.floor(response.faces[0].attributes.beauty.male_score + response.faces[0].attributes.beauty.female_score) / 2) * 10 + response.faces[0].attributes.age.value;
+            console.log(charID)
+            localStorage.setItem("CharID", charID);
+        }).then(function () {
+            // this is where the marvel API call goes 
+            var marvelID = localStorage.getItem("CharID");
+            var queryURL = "https://gateway.marvel.com:443/v1/public/characters/1009" + marvelID + "?apikey=" + apikey + "&ts=" + timestamp;
+            console.log(timestamp)
+            console.log(queryURL)
+            $.ajax({
+                url: queryURL,
+                method: "GET",
+
+            });
+        }).then(function (response) {
+            // this is where we take the response from the marvel call, get the image and place
+            console.log(response);
+            console.log(response);
+            console.log(response.data.results[0].thumbnail.path);
+            console.log(response.data.results[0].thumbnail.extension);
+            
+            var urlPath = response.data.results[0].thumbnail.path;
+            var urlExtension = response.data.results[0].thumbnail.extension;
+            var marvelImage = urlPath+"."+ urlExtension;
+            console.log(marvelImage);
+            // in a div 
+            // we can also display our image of the user now from what we stored earlier 
+            })
     })
-    
+
 }
 
 function uploadHandler(evt) {
     var files = evt.target.files;
     var file = files[0];
-    var data = new FormData(); 
+    var data = new FormData();
 
     // if files exist then load a filereader object, convert to binary string and store result 
     if (files && file) {
@@ -77,11 +99,12 @@ function uploadHandler(evt) {
     }
     var uploadFile = evt.target.files[0];
     console.log(uploadFile.name);
-    var uploadTask = storageRef.child('img/'+uploadFile.name).put(uploadFile);
+    var uploadTask = storageRef.child('img/' + uploadFile.name).put(uploadFile);
     uploadTask.on('state_changed', null, null, function () {
         console.log('Image uploaded successfully');
-        // might want to add error checks or an alert to user 
-        
+        // we should get and store the firebase storage URL 
+        // for the USER's image and store in a global VAR or something (or local storage)
+
     });
 
     // call ajax func 
