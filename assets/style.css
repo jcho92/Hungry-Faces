@@ -5,6 +5,10 @@ body {
     background: linear-gradient(to right, #190A05, #870000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
 }
 
+h1 {
+    background:
+}
+
 button {
     margin: 0 auto;
     background-color: #F3B404;
