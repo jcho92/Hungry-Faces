@@ -25,6 +25,37 @@ button:hover {
     border: 1px solid #F3B404;
 }
 
+img {
+    margin: 0 auto;
+    border: 2px solid yellow;
+    border-radius: 5px;
+}
+
+ input[type='file']{
+    background-color: #F3B404;
+    color: #fff;
+    width: 25%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #F3B404;
+    display: block;
+    transition: 0.3s;
+    margin: 10px 10px 10px 10px;
+    font-size: 20px;
+}
+
+input[type='file']:hover{
+    background-color: #fff;
+    color: #F3B404;
+    border: 1px solid #F3B404;
+ }
+
+.pickypurImg {
+    color: #F3B404;
+    font-family: 'Mukta Mahee', sans-serif;
+    font-size: 18px;
+}
+
 
 .welcomepage {
     text-align: center;
