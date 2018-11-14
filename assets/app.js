@@ -71,13 +71,16 @@ function marvelGen(imgData) {
                 method: "GET",
             }).then(function (response) {
             console.log(response);
-            // console.log(response.data.results[0].thumbnail.path);
-            // console.log(response.data.results[0].thumbnail.extension);
+            console.log(response.data.results[0].thumbnail.path);
+            console.log(response.data.results[0].thumbnail.extension);
             
-            // var urlPath = response.data.results[0].thumbnail.path;
-            // var urlExtension = response.data.results[0].thumbnail.extension;
-            // var marvelImage = urlPath+"."+ urlExtension;
-            // console.log(marvelImage);
+            var urlPath = response.data.results[0].thumbnail.path;
+            var urlExtension = response.data.results[0].thumbnail.extension;
+            var marvelImage = urlPath+"."+ urlExtension;
+            var marvelImgDiv = document.getElementById('marvelImg');
+            var marvelImgTag = document.createElement('img');
+            marvelImgTag.src = marvelImage;
+            console.log(marvelImage);
             })
         }).catch(function (err) {
             // this is where we take the response from the marvel call, get the image and place
