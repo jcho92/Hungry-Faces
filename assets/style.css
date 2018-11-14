@@ -6,10 +6,12 @@ body {
 }
 
 h1 {
-    background:
+    text-shadow: 2px 2px 2px yellow;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #E8CA40;
 }
 
-button {
+/*button {
     margin: 0 auto;
     background-color: #F3B404;
     color: #fff;
@@ -27,15 +29,47 @@ button:hover {
     background-color: #fff;
     color: #F3B404;
     border: 1px solid #F3B404;
-}
+}*/
+
+#filePicker{
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    display: none;
+ }
+ 
+ .file1{
+    top:48px;
+    left:43px;
+    padding: 5px 26px;
+    font-size: 30px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    background: #F3B404;
+    color: #fff;
+ }
+ 
+ .file1:hover{
+    background-color: #fff;
+    color: #F3B404;
+    border: 1px solid #F3B404;
+    border-radius: 5px;
+ }
 
 img {
     margin: 0 auto;
     border: 2px solid yellow;
     border-radius: 5px;
+    display: block; 
+    
 }
 
- input[type='file']{
+.marveluniverse {
+    width: 100%; 
+}
+
+ /*input[type='file']{
     background-color: #F3B404;
     color: #fff;
     width: 25%;
@@ -48,11 +82,13 @@ img {
     font-size: 20px;
 }
 
+
+
 input[type='file']:hover{
     background-color: #fff;
     color: #F3B404;
     border: 1px solid #F3B404;
- }
+ } */
 
 .pickypurImg {
     color: #F3B404;
@@ -65,10 +101,10 @@ input[type='file']:hover{
     text-align: center;
 }
 
-.container {
+/* .container {
     width: 1200px;
     margin: 0 auto;
-}
+} */
 
 .photo-div {
     width: 200px;
@@ -107,4 +143,9 @@ input[type=text] {
 input[type=text]:focus{
     border-color:dodgerblue;
     box-shadow:0 0 8px 0 dodgerblue;
+}
+
+img.resize {
+    width: auto;
+    height: 400px;
 }
