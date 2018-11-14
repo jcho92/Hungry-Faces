@@ -80,6 +80,7 @@ function marvelGen(imgData) {
             var marvelImgDiv = document.getElementById('marvelImg');
             var marvelImgTag = document.createElement('img');
             marvelImgTag.src = marvelImage;
+            marvelImgDiv.append(marvelImgTag);
             console.log(marvelImage);
             })
         }).catch(function (err) {
