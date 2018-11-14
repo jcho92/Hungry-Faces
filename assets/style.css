@@ -6,7 +6,9 @@ body {
 }
 
 h1 {
-    background:
+    text-shadow: 2px 2px 2px yellow;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #E8CA40;
 }
 
 button {
