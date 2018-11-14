@@ -21,14 +21,16 @@ firebase.initializeApp(config);
 var auth = firebase.auth();
 
 // firebase storage references 
-var storageRef = firebase.storage().ref();
+var storageRef = firebase.storage().ref(); 
 
-
-// event handler function 
-// invoked after a change to the file selection 
-// only selects the first file selected by the user 
+// 
+$('body').on('load', 'img', function () {
+    console.log('this worked');
+    document.getElementsByTagName('img').classList = "";
+})
 
 // display results function 
+// shows image elements returned by APIs
 var displayResults = function (personImgUrl, marvelImgUrl) {
     console.log('calling display results');
     var marvelImgDiv = document.getElementById('marvelDiv');
@@ -36,13 +38,15 @@ var displayResults = function (personImgUrl, marvelImgUrl) {
     var personImgDiv = document.getElementById('personDiv');
     var personImgTag = document.createElement('img');
     marvelImgTag.src = marvelImgUrl;
-    marvelImgTag.classList = "resize";
+    marvelImgTag.classList = "resize d-none";
     personImgTag.src = personImgUrl;
-    personImgTag.classList = "resize";
+    personImgTag.classList = "resize d-none";
     marvelImgDiv.append(marvelImgTag);
     personImgDiv.append(personImgTag);
     // hide the main image 
     document.getElementById('mainSplashImg').classList = "marveluniverse d-none";
+    // kill the loader
+
 }
 
 // ajax call to face ++ 
@@ -64,6 +68,7 @@ function marvelGen(imgData) {
     }, 
     function (err) {
         console.log('There was an error: ' +err);
+        // kill the loader, refresh page 
     }).then(function (tokenToUse) {
         var analyzeUrl = 'https://api-us.faceplusplus.com/facepp/v3/face/analyze?&api_key=' + api_keyFpp + "&api_secret=" + api_secretFpp + '&face_tokens=' + tokenToUse + '&return_attributes=' + attr_returnFpp;
         $.ajax({
@@ -82,6 +87,7 @@ function marvelGen(imgData) {
         },
         function (err) {
             console.log('There was an error: ' + err);
+            // kill the loader, refresh page 
         }).then(function () {
             // this is where the marvel API call goes 
             var apikeyMarvel = '96b65e16cae4310e026174023b8d08b1';
@@ -108,6 +114,7 @@ function marvelGen(imgData) {
             },function (err) {
                 console.log('There was an error:');
                 console.log(err.responseJSON);
+                // kill the loader refresh the page 
             })
             })}
 
@@ -117,6 +124,7 @@ function uploadHandler(evt) {
             var files = evt.target.files;
             var file = files[0];
             var data = new FormData();
+            // maybe add a loader 
 
             // if files exist then load a filereader object, convert to binary string and store result 
             if (files && file) {
