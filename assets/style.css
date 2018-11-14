@@ -149,3 +149,27 @@ img.resize {
     width: auto;
     height: 400px;
 }
+
+.loader {
+    width: 120px;
+    height: 120px; 
+    border-radius: 50%; 
+    border: 16px solid lightgray; 
+    border-top: 16px solid blue; 
+    animation-name: spin;
+    animation-duration: 2s; 
+    animation-timing-function: linear; 
+    animation-iteration-count: infinite; 
+    left: 45%; 
+    top: 50%; 
+    position: absolute; 
+}
+
+@keyframes spin {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+}
+
+.faded {
+    opacity: 0.15; 
+}

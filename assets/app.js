@@ -23,11 +23,18 @@ var auth = firebase.auth();
 // firebase storage references 
 var storageRef = firebase.storage().ref(); 
 
-// 
-$('body').on('load', 'img', function () {
-    console.log('this worked');
-    document.getElementsByTagName('img').classList = "";
-})
+// loader function 
+function loader (isLoaded) {
+    if (!isLoaded) {
+        document.getElementById('mainContentDiv').classList = "container faded";
+        document.getElementById('loaderDiv').classList = "loader"
+    }
+    else {
+        // put off here later
+        document.getElementById('mainContentDiv').classList = "container";
+        document.getElementById('loaderDiv').classList = "d-none";
+    }
+}
 
 // display results function 
 // shows image elements returned by APIs
@@ -46,6 +53,7 @@ var displayResults = function (personImgUrl, marvelImgUrl) {
     // hide the main image 
     document.getElementById('mainSplashImg').classList = "marveluniverse d-none";
     // kill the loader
+    loader(true);
 
 }
 
@@ -69,6 +77,7 @@ function marvelGen(imgData) {
     function (err) {
         console.log('There was an error: ' +err);
         // kill the loader, refresh page 
+        loader(true);
     }).then(function (tokenToUse) {
         var analyzeUrl = 'https://api-us.faceplusplus.com/facepp/v3/face/analyze?&api_key=' + api_keyFpp + "&api_secret=" + api_secretFpp + '&face_tokens=' + tokenToUse + '&return_attributes=' + attr_returnFpp;
         $.ajax({
@@ -88,6 +97,7 @@ function marvelGen(imgData) {
         function (err) {
             console.log('There was an error: ' + err);
             // kill the loader, refresh page 
+            loader(true);
         }).then(function () {
             // this is where the marvel API call goes 
             var apikeyMarvel = '96b65e16cae4310e026174023b8d08b1';
@@ -115,6 +125,7 @@ function marvelGen(imgData) {
                 console.log('There was an error:');
                 console.log(err.responseJSON);
                 // kill the loader refresh the page 
+                loader(true);
             })
             })}
 
@@ -125,7 +136,7 @@ function uploadHandler(evt) {
             var file = files[0];
             var data = new FormData();
             // maybe add a loader 
-
+            loader(false);
             // if files exist then load a filereader object, convert to binary string and store result 
             if (files && file) {
                 // append the files to the form data
