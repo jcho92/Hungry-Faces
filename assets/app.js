@@ -41,6 +41,9 @@ var displayResults = function (personImgUrl, marvelImgUrl) {
     personImgTag.classList = "resize";
     marvelImgDiv.append(marvelImgTag);
     personImgDiv.append(personImgTag);
+    // hide the main image 
+    document.getElementById('mainSplashImg').classList = "marveluniverse d-none";
+    
 
 }
 
@@ -56,9 +59,14 @@ function marvelGen(imgData) {
         processData: false
     }).then(function (response) {
         console.log(response);
+        console.log('no face if below is 0');
+        console.log(response.faces.length);
         var tokenToUse = response.faces[0].face_token;
         console.log(tokenToUse);
         return tokenToUse;
+    },function(err){
+        console.log(err);
+        alert('There was an error!: '+err);
     }).then(function (tokenToUse) {
         var analyzeUrl = 'https://api-us.faceplusplus.com/facepp/v3/face/analyze?&api_key=' + api_keyFpp + "&api_secret=" + api_secretFpp + '&face_tokens=' + tokenToUse + '&return_attributes=' + attr_returnFpp;
         $.ajax({
@@ -66,7 +74,6 @@ function marvelGen(imgData) {
             type: 'POST',
             url: analyzeUrl
         }).then(function (response) {
-            console.log(response);
             console.log(response.faces[0].attributes.age.value);
             console.log(response.faces[0].attributes.gender.value);
             console.log(response.faces[0].attributes.ethnicity.value);
@@ -75,7 +82,8 @@ function marvelGen(imgData) {
             var charID = (Math.floor(response.faces[0].attributes.beauty.male_score + response.faces[0].attributes.beauty.female_score) / 2) * 10 + response.faces[0].attributes.age.value;
             console.log(charID)
             localStorage.setItem("CharID", charID);
-        }).then(function () {
+        }, 
+        alert('No Face Detected')).then(function () {
             // this is where the marvel API call goes 
             var apikeyMarvel = '96b65e16cae4310e026174023b8d08b1'; 
             var timestamp = new Date().getTime(); 
@@ -99,11 +107,12 @@ function marvelGen(imgData) {
             // marvelNameDiv.attr("class" , "name")
             // $("#marvelImg").append(marvelName)
             displayResults(userImgUrl,marvelImage);
-            
-            })
+            }, 
+            alert('My Spidey-Sense says Marvel is having problems...'));
         }).catch(function (err) {
             // this is where we take the response from the marvel call, get the image and place
             console.log(err);
+            alert('there was a problem');
             
             // in a div 
             // we can also display our image of the user now from what we stored earlier 
