@@ -82,6 +82,11 @@ function marvelGen(imgData) {
             marvelImgTag.src = marvelImage;
             marvelImgDiv.append(marvelImgTag);
             console.log(marvelImage);
+            var marvelName = response.data.results[0].name;
+            var marvelNameDiv = ("<p>");
+            marvelNameDiv.attr("class" , "name")
+            $("#marvelImg").append(marvelName)
+
             })
         }).catch(function (err) {
             // this is where we take the response from the marvel call, get the image and place
