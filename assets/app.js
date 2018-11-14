@@ -12,7 +12,7 @@ var config = {
 var api_secretFpp = '9NCT_mXUokztZLOwk5hUqyLwB5aOLYI-';
 var api_keyFpp = 'lYJn2ec5zAnhgiO01Q5cMILRDs9laP4I';
 var attr_returnFpp = 'gender,age,smiling,ethnicity,beauty';
-var userImgUrl; 
+var userIm; 
 
 // initialize firebase app
 firebase.initializeApp(config);
@@ -36,7 +36,9 @@ var displayResults = function (personImgUrl, marvelImgUrl) {
     var personImgDiv = document.getElementById('personDiv');
     var personImgTag = document.createElement('img');
     marvelImgTag.src = marvelImgUrl;
+    marvelImgTag.classList = "resize"; 
     personImgTag.src = personImgUrl;
+    personImgTag.src = "resize";
     marvelImgDiv.append(marvelImgTag);
     personImgDiv.append(personImgTag);
 
