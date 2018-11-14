@@ -60,26 +60,29 @@ function marvelGen(imgData) {
             localStorage.setItem("CharID", charID);
         }).then(function () {
             // this is where the marvel API call goes 
+            var apikeyMarvel = '96b65e16cae4310e026174023b8d08b1'; 
+            var timestamp = new Date().getTime(); 
             var marvelID = localStorage.getItem("CharID");
-            var queryURL = "https://gateway.marvel.com:443/v1/public/characters/1009" + marvelID + "?apikey=" + apikey + "&ts=" + timestamp;
+            var queryURL = "https://gateway.marvel.com:443/v1/public/characters/1009" + marvelID + "?apikey=" + apikeyMarvel + "&ts=" + timestamp;
             console.log(timestamp)
             console.log(queryURL)
             $.ajax({
                 url: queryURL,
                 method: "GET",
-
-            });
-        }).then(function (response) {
-            // this is where we take the response from the marvel call, get the image and place
+            }).then(function (response) {
             console.log(response);
-            console.log(response);
-            console.log(response.data.results[0].thumbnail.path);
-            console.log(response.data.results[0].thumbnail.extension);
+            // console.log(response.data.results[0].thumbnail.path);
+            // console.log(response.data.results[0].thumbnail.extension);
             
-            var urlPath = response.data.results[0].thumbnail.path;
-            var urlExtension = response.data.results[0].thumbnail.extension;
-            var marvelImage = urlPath+"."+ urlExtension;
-            console.log(marvelImage);
+            // var urlPath = response.data.results[0].thumbnail.path;
+            // var urlExtension = response.data.results[0].thumbnail.extension;
+            // var marvelImage = urlPath+"."+ urlExtension;
+            // console.log(marvelImage);
+            })
+        }).catch(function (err) {
+            // this is where we take the response from the marvel call, get the image and place
+            console.log(err);
+            
             // in a div 
             // we can also display our image of the user now from what we stored earlier 
             })
