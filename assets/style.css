@@ -5,7 +5,7 @@ body {
     background: linear-gradient(to right, #190A05, #870000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
 }
 
-h1 {
+h1, h2 {
     text-shadow: 2px 2px 2px yellow;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #E8CA40;
@@ -18,7 +18,7 @@ section {
     
 }
 
-section h1 {
+section h1, section h2 {
     text-align: left;
     
     
@@ -59,7 +59,8 @@ img {
 }
 
 .marveluniverse {
-    width: 100%; 
+    width: 80%; 
+    height: auto; 
 }
 
 input[type='file']:hover{
