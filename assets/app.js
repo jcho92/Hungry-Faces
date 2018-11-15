@@ -155,6 +155,7 @@ function uploadHandler(evt) {
                     userImgUrl = downloadURL;
                     console.log('event handler userImgUrl');
                     console.log(userImgUrl);
+                    marvelGen(data);
                     
 
                 })
@@ -164,7 +165,7 @@ function uploadHandler(evt) {
             });
 
             // call ajax func 
-            marvelGen(data);
+           
         }
 
 
