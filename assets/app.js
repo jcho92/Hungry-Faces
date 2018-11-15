@@ -39,6 +39,9 @@ function loader (isLoaded) {
 // display results function 
 // shows image elements returned by APIs
 var displayResults = function (personImgUrl, marvelImgUrl) {
+    console.log('displayResultsFN');
+    console.log(personImgUrl);
+    console.log(marvelImgUrl);
     console.log('calling display results');
     var marvelImgDiv = document.getElementById('marvelDiv');
     var marvelImgTag = document.createElement('img');
@@ -150,6 +153,7 @@ function uploadHandler(evt) {
                 uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
                     console.log('File available at', downloadURL);
                     userImgUrl = downloadURL;
+                    
 
                 })
                 // we should get and store the firebase storage URL 
