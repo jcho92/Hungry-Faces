@@ -9,6 +9,8 @@ h1 {
     text-shadow: 2px 2px 2px yellow;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #E8CA40;
+    text-align: center; 
+    
 }
 
 section {
@@ -16,8 +18,10 @@ section {
     
 }
 
-section ul {
-    margin: 0 auto; 
+section h1 {
+    text-align: left;
+    
+    
 }
 
 #filePicker{
