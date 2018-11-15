@@ -5,31 +5,24 @@ body {
     background: linear-gradient(to right, #190A05, #870000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */  
 }
 
-h1 {
+h1, h2 {
     text-shadow: 2px 2px 2px yellow;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: #E8CA40;
+    text-align: center; 
+    
 }
 
-/*button {
-    margin: 0 auto;
-    background-color: #F3B404;
-    color: #fff;
-    width: 10%;
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #F3B404;
-    display: block;
-    transition: 0.3s;
-    margin: 10px 0px 0px 10px;
-    font-size: 20px; 
+section {
+    color: white; 
+    
 }
 
-button:hover {
-    background-color: #fff;
-    color: #F3B404;
-    border: 1px solid #F3B404;
-}*/
+section h1, section h2 {
+    text-align: left;
+    
+    
+}
 
 #filePicker{
     position: absolute;
@@ -66,23 +59,9 @@ img {
 }
 
 .marveluniverse {
-    width: 100%; 
+    width: 80%; 
+    height: auto; 
 }
-
- /*input[type='file']{
-    background-color: #F3B404;
-    color: #fff;
-    width: 25%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #F3B404;
-    display: block;
-    transition: 0.3s;
-    margin: 10px 10px 10px 10px;
-    font-size: 20px;
-}
-
-
 
 input[type='file']:hover{
     background-color: #fff;
@@ -90,45 +69,18 @@ input[type='file']:hover{
     border: 1px solid #F3B404;
  } */
 
-.pickypurImg {
-    color: #F3B404;
-    font-family: 'Mukta Mahee', sans-serif;
-    font-size: 18px;
-}
-
-
-.welcomepage {
-    text-align: center;
-}
-
-/* .container {
-    width: 1200px;
-    margin: 0 auto;
-} */
-
-.photo-div {
-    width: 200px;
-}
-
-.child-div {
-    width: 802px;
-    border: 3px solid yellow;
-    margin: 0 auto;
-}
-
-h1 {
+/* h1 {
     color: white;
     text-align: center;
     font-family: 'Righteous', cursive;
     font-size: 40px;
     margin: 0px;
     padding: 20px;   
-}
+} */
 
 .getstarted {
     text-align: center;
 }
-
 
 input[type=text] {
     width: 250px;
