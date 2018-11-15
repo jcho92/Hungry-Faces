@@ -12,7 +12,7 @@ var config = {
 var api_secretFpp = '9NCT_mXUokztZLOwk5hUqyLwB5aOLYI-';
 var api_keyFpp = 'lYJn2ec5zAnhgiO01Q5cMILRDs9laP4I';
 var attr_returnFpp = 'gender,age,smiling,ethnicity,beauty';
-var userIm;
+var userImgUrl; 
 
 // initialize firebase app
 firebase.initializeApp(config);
