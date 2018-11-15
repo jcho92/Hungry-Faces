@@ -153,6 +153,8 @@ function uploadHandler(evt) {
                 uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
                     console.log('File available at', downloadURL);
                     userImgUrl = downloadURL;
+                    console.log('event handler userImgUrl');
+                    console.log(userImgUrl);
                     
 
                 })
