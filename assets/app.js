@@ -39,10 +39,9 @@ function loader (isLoaded) {
 // display results function 
 // shows image elements returned by APIs
 var displayResults = function (personImgUrl, marvelImgUrl) {
-    console.log('displayResultsFN');
+    console.log('displayResults');
     console.log(personImgUrl);
     console.log(marvelImgUrl);
-    console.log('calling display results');
     var marvelImgDiv = document.getElementById('marvelDiv');
     var marvelImgTag = document.createElement('img');
     var personImgDiv = document.getElementById('personDiv');
@@ -62,6 +61,7 @@ var displayResults = function (personImgUrl, marvelImgUrl) {
 
 // ajax call to face ++ 
 function marvelGen(imgData) {
+    console.log('marvelGen');
     var detectUrl = "https://api-us.faceplusplus.com/facepp/v3/detect?api_key=" + api_keyFpp + "&api_secret=" + api_secretFpp;
     $.ajax({ // call 
         method: 'POST',
