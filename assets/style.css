@@ -11,6 +11,15 @@ h1 {
     color: #E8CA40;
 }
 
+section {
+    color: white; 
+    
+}
+
+section ul {
+    margin: 0 auto; 
+}
+
 #filePicker{
     position: absolute;
     left: 50px;
@@ -55,40 +64,18 @@ input[type='file']:hover{
     border: 1px solid #F3B404;
  } */
 
-.pickypurImg {
-    color: #F3B404;
-    font-family: 'Mukta Mahee', sans-serif;
-    font-size: 18px;
-}
-
-
-.welcomepage {
-    text-align: center;
-}
-
-.photo-div {
-    width: 200px;
-}
-
-.child-div {
-    width: 802px;
-    border: 3px solid yellow;
-    margin: 0 auto;
-}
-
-h1 {
+/* h1 {
     color: white;
     text-align: center;
     font-family: 'Righteous', cursive;
     font-size: 40px;
     margin: 0px;
     padding: 20px;   
-}
+} */
 
 .getstarted {
     text-align: center;
 }
-
 
 input[type=text] {
     width: 250px;
